@@ -1,0 +1,802 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find and explore online courses with TOTC.">
+  <title>TOTC | Explore Courses</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --navy: #1d2855;
+      --navy-dark: #172044;
+      --purple: #6c63ff;
+      --purple-dark: #5148dc;
+      --ink: #252b42;
+      --muted: #697386;
+      --soft: #f5f6ff;
+      --line: #e8eaf2;
+      --aqua: #eafcff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font-family: "Inter", sans-serif;
+      line-height: 1.65;
+    }
+    a { text-decoration: none; }
+
+    .site-navbar {
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid rgba(29,40,85,.07);
+      box-shadow: 0 4px 24px rgba(29,40,85,.04);
+    }
+    .navbar-brand {
+      color: var(--navy) !important;
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -.06em;
+    }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-right: 8px;
+      color: #fff;
+      background: var(--purple);
+      border-radius: 12px 3px 12px 3px;
+      font-size: 1rem;
+      letter-spacing: 0;
+      vertical-align: 3px;
+    }
+    .navbar-nav { gap: .2rem; }
+    .navbar-nav .nav-link {
+      padding: .65rem .8rem !important;
+      color: #50596f;
+      font-size: .88rem;
+      font-weight: 500;
+      border-radius: 9px;
+      transition: .2s ease;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: var(--purple-dark);
+      background: #f0efff;
+    }
+    .profile-avatar {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border: 2px solid #ecebff;
+      border-radius: 50%;
+    }
+    .profile-name { color: var(--ink); font-size: .9rem; font-weight: 600; }
+
+    .search-hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 300px;
+      padding: 3.5rem 0;
+      background:
+        linear-gradient(90deg, rgba(19,29,67,.82), rgba(19,29,67,.42)),
+        url("images/online%20meet.jpg") center / cover no-repeat;
+    }
+    .hero-copy { max-width: 700px; color: #fff; }
+    .hero-kicker {
+      display: inline-block;
+      margin-bottom: .8rem;
+      color: #d8d5ff;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      margin: 0 0 .7rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -.05em;
+      line-height: 1.15;
+    }
+    .hero-copy p { margin: 0; color: rgba(255,255,255,.84); }
+
+    .filter-panel {
+      position: relative;
+      z-index: 2;
+      margin-top: -34px;
+      padding: 1.25rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 14px 38px rgba(29,40,85,.10);
+    }
+    .search-control { min-height: 48px; border-color: var(--line); border-radius: 10px; }
+    .search-control:focus, .filter-select:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 .2rem rgba(108,99,255,.12);
+    }
+
+/* ===== Footer Section ===== */
+footer {
+  padding: 3.5rem 0 1.5rem;
+  color: #ffffff;
+  background: #1d2855;
+  text-align: center;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-brand h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.footer-brand span {
+  padding-left: 1.2rem;
+  color: #d5d9ed;
+  font-size: .85rem;
+  line-height: 1.5;
+  text-align: left;
+  border-left: 1px solid rgba(255,255,255,.35);
+}
+
+.newsletter-title {
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: .7rem;
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+}
+
+.newsletter-form .form-control {
+  min-height: 48px;
+  padding: .7rem 1rem;
+  color: #ffffff;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 30px;
+  font-size: .88rem;
+}
+
+.newsletter-form .form-control::placeholder {
+  color: #c5c9db;
+}
+
+.newsletter-form .form-control:focus {
+  background: rgba(255,255,255,.12);
+  border-color: #8b85ff;
+  box-shadow: 0 0 0 .2rem rgba(108,99,255,.2);
+}
+
+.newsletter-form .btn {
+  min-width: 125px;
+  padding: .7rem 1.2rem;
+  color: #ffffff;
+  background: #6c63ff;
+  border: none;
+  border-radius: 30px;
+  font-size: .88rem;
+  font-weight: 700;
+  transition: .2s ease;
+}
+
+.newsletter-form .btn:hover {
+  background: #5148dc;
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  padding-top: 1.3rem;
+  color: #b8bfd8;
+  border-top: 1px solid rgba(255,255,255,.15);
+  font-size: .82rem;
+}
+
+
+@media (max-width: 575.98px) {
+  footer {
+    padding: 2.8rem 1rem 1.2rem;
+  }
+
+  .footer-brand {
+    gap: .8rem;
+  }
+
+  .footer-brand h2 {
+    font-size: 1.9rem;
+  }
+
+  .footer-brand span {
+    padding-left: .8rem;
+    font-size: .78rem;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    gap: .8rem;
+  }
+
+  .newsletter-form .btn {
+    width: 100%;
+  }
+}
+
+    .btn-search {
+      min-height: 48px;
+      padding: .65rem 1.35rem;
+      color: #fff;
+      background: var(--purple);
+      border: 0;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+    .btn-search:hover { color: #fff; background: var(--purple-dark); }
+    .filter-label {
+      display: block;
+      margin-bottom: .35rem;
+      color: #778096;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .filter-select {
+      min-height: 44px;
+      border-color: var(--line);
+      border-radius: 9px;
+      color: var(--ink);
+      font-size: .88rem;
+    }
+
+    .courses-section { padding: 4.2rem 0 4.8rem; }
+    .section-kicker {
+      color: var(--purple-dark);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .section-heading {
+      margin: .3rem 0 0;
+      color: var(--navy);
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .result-count { color: var(--muted); font-size: .88rem; }
+    .course-card {
+      height: 100%;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 7px 25px rgba(29,40,85,.055);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 32px rgba(29,40,85,.11);
+    }
+    .course-image {
+      display: block;
+      width: 100%;
+      height: 185px;
+      object-fit: cover;
+    }
+    .course-card-body { padding: 1.15rem; }
+    .course-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      margin-bottom: .65rem;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 600;
+    }
+    .course-category {
+      padding: .25rem .65rem;
+      color: var(--purple-dark);
+      background: #f0efff;
+      border-radius: 30px;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    .course-duration { white-space: nowrap; }
+    .course-title {
+      min-height: 52px;
+      margin: 0 0 .55rem;
+      color: var(--navy);
+      font-size: 1.02rem;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+    .course-description {
+      min-height: 67px;
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: .83rem;
+      line-height: 1.7;
+    }
+    .course-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .7rem;
+      padding-top: .9rem;
+      border-top: 1px solid #f0f1f6;
+    }
+    .instructor {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      min-width: 0;
+      color: #525b70;
+      font-size: .8rem;
+      font-weight: 600;
+    }
+    .instructor img {
+      width: 34px;
+      height: 34px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .price { text-align: right; white-space: nowrap; }
+    .old-price { display: block; color: #9aa1b0; font-size: .73rem; text-decoration: line-through; }
+    .current-price { color: var(--purple-dark); font-size: 1.05rem; font-weight: 800; }
+
+    .learning-cta { padding: 0 0 4.5rem; }
+    .learning-banner {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(2rem, 5vw, 3.6rem);
+      color: var(--navy);
+      background: linear-gradient(120deg, #e9faff, #f0efff);
+      border: 1px solid #e1e8ff;
+      border-radius: 24px;
+    }
+    .learning-banner::after {
+      content: "";
+      position: absolute;
+      top: -90px;
+      right: -60px;
+      width: 260px;
+      height: 260px;
+      background: rgba(108,99,255,.09);
+      border-radius: 50%;
+    }
+    .learning-banner-content { position: relative; z-index: 1; max-width: 650px; }
+    .learning-banner h2 {
+      margin: 0 0 .8rem;
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .learning-banner p { margin: 0 0 1.4rem; color: #59647d; }
+    .benefit-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem 1.25rem;
+      margin: 0 0 1.6rem;
+      padding: 0;
+      list-style: none;
+    }
+    .benefit-list li { color: #4e5870; font-size: .88rem; font-weight: 600; }
+    .benefit-list i { margin-right: .35rem; color: #299d78; }
+    .btn-learning {
+      display: inline-block;
+      padding: .8rem 1.3rem;
+      color: #fff;
+      background: var(--purple);
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+    .btn-learning:hover { color: #fff; background: var(--purple-dark); }
+
+    .recommended-section { padding: 4rem 0 4.5rem; background: var(--soft); }
+    .see-all { color: var(--purple-dark); font-size: .9rem; font-weight: 700; }
+    .see-all:hover { color: var(--navy); }
+
+
+    @media (max-width: 1199.98px) {
+      .navbar-nav { padding: .75rem 0; }
+      .profile-area { padding: .4rem 0 1rem; }
+    }
+    @media (max-width: 767.98px) {
+      .search-hero { min-height: 260px; }
+      .filter-panel { margin-top: -22px; }
+      .courses-section { padding-top: 3.2rem; }
+      .course-image { height: 200px; }
+      .course-title, .course-description { min-height: 0; }
+    }
+    @media (max-width: 575.98px) {
+      .search-hero { min-height: 240px; padding: 2.6rem 0; }
+      .filter-panel { padding: 1rem; }
+      .learning-banner { border-radius: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-xl site-navbar sticky-top">
+    <div class="container py-2">
+      <a class="navbar-brand" href="p.html"><span class="brand-mark">T</span>TOTC</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-xl-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="coursepage.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="coursedetail.html">Course Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogdetails.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="meeting.html">Meeting</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="searchpage.html">Search Page</a></li>
+          <li class="nav-item"><a class="nav-link" href="literature course.html">Literature Course</a></li>
+          <li class="nav-item"><a class="nav-link" href="membership.html">Membership</a></li>
+          <li class="nav-item"><a class="nav-link" href="checkoutpage.html">Checkout</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 ms-xl-3 py-2">
+          <img class="profile-avatar" src="images/pexels-garuda-929115-29214093.jpg" alt="Lina's profile"
+            style="width:40px;height:40px;object-fit:cover;border-radius:50%;border:2px solid #ecebff;">
+          <span class="profile-name">Lina</span>
+          <i class="bi bi-chevron-down small text-secondary" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="search-hero">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="hero-kicker">Discover your next skill</span>
+        <h1 class="hero-title">Find the right course<br>for your future</h1>
+        <p>Explore expert-led courses and learn at your own pace with TOTC.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" aria-label="Search and filter courses">
+      <div class="filter-panel">
+        <form action="searchpage.html" method="get">
+          <div class="row g-3 align-items-end">
+            <div class="col-12 col-lg-5">
+              <label class="filter-label" for="courseSearch">Search courses</label>
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0" style="border-color:var(--line);border-radius:10px 0 0 10px;">
+                  <i class="bi bi-search text-secondary" aria-hidden="true"></i>
+                </span>
+                <input class="form-control search-control border-start-0" id="courseSearch" name="q"
+                  type="search" placeholder="What do you want to learn?" aria-label="Search courses">
+                <button class="btn btn-search ms-2" type="submit">Search</button>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-1">
+              <label class="filter-label" for="subjectFilter">Subject</label>
+              <select class="form-select filter-select" id="subjectFilter" name="subject">
+                <option value="">All</option>
+                <option>Design</option>
+                <option>Technology</option>
+                <option>Business</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-4 col-lg-1">
+              <label class="filter-label" for="partnerFilter">Partner</label>
+              <select class="form-select filter-select" id="partnerFilter" name="partner">
+                <option value="">All</option>
+                <option>TOTC</option>
+                <option>Industry</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-4 col-lg-1">
+              <label class="filter-label" for="programFilter">Program</label>
+              <select class="form-select filter-select" id="programFilter" name="program">
+                <option value="">All</option>
+                <option>Certificate</option>
+                <option>Course</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-4 col-lg-1">
+              <label class="filter-label" for="languageFilter">Language</label>
+              <select class="form-select filter-select" id="languageFilter" name="language">
+                <option value="">All</option>
+                <option>English</option>
+                <option>Hindi</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-4 col-lg-1">
+              <label class="filter-label" for="availabilityFilter">Availability</label>
+              <select class="form-select filter-select" id="availabilityFilter" name="availability">
+                <option value="">All</option>
+                <option>Available</option>
+                <option>Upcoming</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <label class="filter-label" for="learningTypeFilter">Learning type</label>
+              <select class="form-select filter-select" id="learningTypeFilter" name="type">
+                <option value="">All types</option>
+                <option>Online</option>
+                <option>Self-paced</option>
+                <option>Instructor-led</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="courses-section">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
+          <div>
+            <span class="section-kicker">Browse our catalog</span>
+            <h2 class="section-heading">Explore Courses</h2>
+          </div>
+          <span class="result-count">Popular learning programs</span>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/kid.jpg" alt="Child studying with books">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Technology</span><span class="course-duration"><i class="bi bi-clock me-1"></i>3 Months</span></div>
+                <h3 class="course-title">AWS Certified Solutions Architect</h3>
+                <p class="course-description">Understand cloud computing, design scalable systems, and explore essential AWS architecture services.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/arun.jpg" alt=""><span>Daniel Brooks</span></div>
+                  <div class="price"><span class="old-price">$100</span><span class="current-price">$80</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/pexels-dkomov-34803985.jpg" alt="Developer working at a computer">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Programming</span><span class="course-duration"><i class="bi bi-clock me-1"></i>2 Months</span></div>
+                <h3 class="course-title">Full Stack Web Development</h3>
+                <p class="course-description">Learn HTML, CSS, JavaScript, and backend fundamentals to create responsive and functional websites.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/pexels-alipazani-2613260.jpg" alt=""><span>Alipazani</span></div>
+                  <div class="price"><span class="old-price">$90</span><span class="current-price">$70</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/pexels-divinetechygirl-1181671.jpg" alt="Learner working with programming tools">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Business</span><span class="course-duration"><i class="bi bi-clock me-1"></i>6 Weeks</span></div>
+                <h3 class="course-title">Digital Marketing Fundamentals</h3>
+                <p class="course-description">Discover SEO, social media campaigns, content planning, and techniques for reaching online audiences.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/pexels-danxavier-1239288.jpg" alt=""><span>Sarah Wilson</span></div>
+                  <div class="price"><span class="old-price">$85</span><span class="current-price">$65</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/pexels-pavel-danilyuk-8761643.jpg" alt="Colleagues discussing a project">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Design</span><span class="course-duration"><i class="bi bi-clock me-1"></i>2 Months</span></div>
+                <h3 class="course-title">UI/UX Design and Prototyping</h3>
+                <p class="course-description">Explore user research, wireframing, interface design, and interactive prototypes for digital products.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/pexels-fernanda-leticia-536417725-33757713.jpg" alt=""><span>Emma Johnson</span></div>
+                  <div class="price"><span class="old-price">$95</span><span class="current-price">$75</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/pexels-goumbik-574077.jpg" alt="Learner studying a Python guide">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Data Science</span><span class="course-duration"><i class="bi bi-clock me-1"></i>4 Months</span></div>
+                <h3 class="course-title">Python for Data Analysis</h3>
+                <p class="course-description">Work with Python libraries to organize information, analyze datasets, and create useful visual reports.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/pexels-ashik-40729428.jpg" alt=""><span>David Miller</span></div>
+                  <div class="price"><span class="old-price">$110</span><span class="current-price">$85</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/pexels-shvetsa-4226140.jpg" alt="Instructor leading an online class">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Communication</span><span class="course-duration"><i class="bi bi-clock me-1"></i>5 Weeks</span></div>
+                <h3 class="course-title">Professional English Communication</h3>
+                <p class="course-description">Improve your speaking, writing, presentation, and workplace communication skills through guided activities.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/pexels-parv-choudhary-724334-6477286.jpg" alt=""><span>Olivia Martin</span></div>
+                  <div class="price"><span class="old-price">$75</span><span class="current-price">$55</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/pexels-meet-patel-236003280-37085303.jpg" alt="Code displayed on a laptop">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Finance</span><span class="course-duration"><i class="bi bi-clock me-1"></i>8 Weeks</span></div>
+                <h3 class="course-title">Financial Planning and Management</h3>
+                <p class="course-description">Learn budgeting, financial decision-making, savings strategies, and the basics of investment planning.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/pexels-syd-trgt-335495720-36181540.jpg" alt=""><span>James Carter</span></div>
+                  <div class="price"><span class="old-price">$105</span><span class="current-price">$82</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/pexels-markusspiske-2061168.jpg" alt="Source code on a computer screen">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Technology</span><span class="course-duration"><i class="bi bi-clock me-1"></i>3 Months</span></div>
+                <h3 class="course-title">Cybersecurity Essentials</h3>
+                <p class="course-description">Understand online threats, data protection, network security, and safe digital practices.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/pexels-nkhajotia-1516680.jpg" alt=""><span>Robert Allen</span></div>
+                  <div class="price"><span class="old-price">$120</span><span class="current-price">$90</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="learning-cta">
+      <div class="container">
+        <div class="learning-banner">
+          <div class="learning-banner-content">
+            <span class="section-kicker">Learn without limits</span>
+            <h2>Build your knowledge with flexible online education</h2>
+            <p>Access valuable learning materials, practice new skills, and connect with experienced instructors to make steady progress toward your goals.</p>
+            <ul class="benefit-list">
+              <li><i class="bi bi-check-circle-fill"></i>Downloadable study resources</li>
+              <li><i class="bi bi-check-circle-fill"></i>Guidance from skilled educators</li>
+              <li><i class="bi bi-check-circle-fill"></i>Practical learning activities</li>
+            </ul>
+            <a class="btn-learning" href="coursepage.html">Start Learning Now <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="recommended-section">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
+          <div>
+            <span class="section-kicker">Picked for your journey</span>
+            <h2 class="section-heading">Recommended for You</h2>
+          </div>
+          <a class="see-all" href="coursepage.html">See all <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/online meeting 2.jpg" alt="Student attending a remote class">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Artificial Intelligence</span><span class="course-duration"><i class="bi bi-clock me-1"></i>10 Weeks</span></div>
+                <h3 class="course-title">Introduction to Machine Learning</h3>
+                <p class="course-description">Explore machine learning concepts, understand algorithms, and discover how intelligent systems use data.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/pexels-picmatti-37524408.jpg" alt=""><span>Daniel Brooks</span></div>
+                  <div class="price"><span class="old-price">$115</span><span class="current-price">$88</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/pexels-digitalbuggu-374560.jpg" alt="Code displayed on screen">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Creative Arts</span><span class="course-duration"><i class="bi bi-clock me-1"></i>6 Weeks</span></div>
+                <h3 class="course-title">Digital Illustration for Beginners</h3>
+                <p class="course-description">Develop your creative abilities through drawing techniques, color selection, and digital artwork exercises.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/vanessa kirby.jpg" alt=""><span>Emma Johnson</span></div>
+                  <div class="price"><span class="old-price">$80</span><span class="current-price">$60</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/meeting room.jpg" alt="Modern room prepared for a learning session">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Entrepreneurship</span><span class="course-duration"><i class="bi bi-clock me-1"></i>8 Weeks</span></div>
+                <h3 class="course-title">Startup and Business Development</h3>
+                <p class="course-description">Learn how to develop business ideas, understand customers, and prepare a practical startup plan.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/profile.avif" alt=""><span>Sarah Wilson</span></div>
+                  <div class="price"><span class="old-price">$105</span><span class="current-price">$79</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <article class="course-card">
+              <img class="course-image" src="images/book2.jpg" alt="Stack of books for a study session">
+              <div class="course-card-body">
+                <div class="course-meta"><span class="course-category">Personal Development</span><span class="course-duration"><i class="bi bi-clock me-1"></i>4 Weeks</span></div>
+                <h3 class="course-title">Time Management and Productivity</h3>
+                <p class="course-description">Discover practical planning methods, build productive habits, and organize your daily responsibilities effectively.</p>
+                <div class="course-footer">
+                  <div class="instructor"><img src="images/profile 2.jpg" alt=""><span>Olivia Martin</span></div>
+                  <div class="price"><span class="old-price">$65</span><span class="current-price">$45</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+   <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <h2>TOTC</h2>
+        <span>Virtual Class<br>For Zoom</span>
+      </div>
+      <p class="newsletter-title">Subscribe to get our Newsletter</p>
+      <form class="newsletter-form" action="#" method="get">
+        <label class="visually-hidden" for="newsletterEmail">Your email address</label>
+        <input class="form-control" id="newsletterEmail" type="email" placeholder="Your email address" required>
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+      <div class="footer-bottom">© 2026 TOTC. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

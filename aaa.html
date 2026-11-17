@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe"
+      crossorigin="anonymous"
+    />
+    <style>
+      .progress{
+        width: 250px;
+      }
+      .box{
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="carouselMultiple"
+      class="carousel slide"
+      data-bs-ends="stop"
+      style="--bs-carousel-items: 3; --bs-carousel-items-gap: 1rem"
+    >
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Three at a time</h5>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card" style="width: 35rem">
+            <div class="card-body">
+              <img
+                src="images/online meeting 2.jpg"
+                class="card-img"
+                alt="Student attending a live online lesson"
+              />
+              <h5 class="mt-2 mb-0">
+                Class adds $30 million to its balance sheet for a Zoom-friendly
+                edtech solution
+              </h5>
+              <img
+                src="images/pexels-garuda-929115-29214093.jpg"
+                alt=""
+                width="40px"
+                height="40px"
+                style="border-radius: 50px"
+              />
+              <p class="card-text fg-2">
+                Class, launched less than a year ago by Blackboard co-founder
+                Michael Chasen, integrates exclusively...
+              </p>
+              <a style="color: gray" href="">read more</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card" style="width: 35rem">
+            <div class="card-body">
+              <img
+                src="images/online meeting 3.jpg"
+                class="card-img"
+                alt="Learner joining a video class from home"
+              />
+              <h5 class="mt-2 mb-0">
+                Class adds $30 million to its balance sheet for a Zoom-friendly
+                edtech solution
+              </h5>
+              <img
+                src="images/pexels-garuda-929115-29214093.jpg"
+                alt=""
+                width="40px"
+                height="40px"
+                style="border-radius: 50px"
+              />
+              <p class="card-text fg-2">
+                Class, launched less than a year ago by Blackboard co-founder
+                Michael Chasen, integrates exclusively...
+              </p>
+              <a style="color: gray" href="">read more</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card" style="width: 35rem">
+            <div class="card-body">
+              <img
+                src="images/pexels-pavel-danilyuk-8761643.jpg"
+                class="card-img"
+                alt="Colleagues collaborating on a learning project"
+              />
+              <h5 class="mt-2 mb-0">
+                Class adds $30 million to its balance sheet for a Zoom-friendly
+                edtech solution
+              </h5>
+              <img
+                src="images/pexels-garuda-929115-29214093.jpg"
+                alt=""
+                width="40px"
+                height="40px"
+                style="border-radius: 50px"
+              />
+              <p class="card-text fg-2">
+                Class, launched less than a year ago by Blackboard co-founder
+                Michael Chasen, integrates exclusively...
+              </p>
+              <a style="color: gray" href="">read more</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card" style="width: 35rem">
+            <div class="card-body">
+              <img
+                src="images/pexels-divinetechygirl-1181671.jpg"
+                class="card-img"
+                alt="Laptop displaying a software development workspace"
+              />
+              <h5 class="mt-2 mb-0">
+                Class adds $30 million to its balance sheet for a Zoom-friendly
+                edtech solution
+              </h5>
+              <img
+                src="images/pexels-garuda-929115-29214093.jpg"
+                alt=""
+                width="40px"
+                height="40px"
+                style="border-radius: 50px"
+              />
+              <p class="card-text fg-2">
+                Class, launched less than a year ago by Blackboard co-founder
+                Michael Chasen, integrates exclusively...
+              </p>
+              <a style="color: gray" href="">read more</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card" style="width: 35rem">
+            <div class="card-body">
+              <img
+                src="images/online meeting.jpg"
+                class="card-img"
+                alt="Learners meeting in a collaborative classroom"
+              />
+              <h5 class="mt-2 mb-0">
+                Class adds $30 million to its balance sheet for a Zoom-friendly
+                edtech solution
+              </h5>
+              <img
+                src="images/pexels-garuda-929115-29214093.jpg"
+                alt=""
+                width="40px"
+                height="40px"
+                style="border-radius: 50px"
+              />
+              <p class="card-text fg-2">
+                Class, launched less than a year ago by Blackboard co-founder
+                Michael Chasen, integrates exclusively...
+              </p>
+              <a style="color: gray" href="">read more</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100 rounded-5" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100 rounded-5" alt="..." />
+        </div>
+      </div>
+      <div>
+        <button
+          class="btn-icon btn-sm"
+          type="button"
+          data-bs-target="#carouselMultiple"
+          data-bs-slide="prev"
+          style="--bs-carousel-control-icon-width: 1rem"
+        >
+          <span class="carousel-icon-prev" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="btn-icon btn-sm"
+          type="button"
+          data-bs-target="#carouselMultiple"
+          data-bs-slide="next"
+          style="--bs-carousel-control-icon-width: 1rem"
+        >
+          <span class="carousel-icon-next" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+
+
+    
+  </body>
+</html>

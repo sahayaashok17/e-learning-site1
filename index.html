@@ -1,0 +1,953 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TOTC - Discover expert-led online courses, educational articles, and practical learning resources.">
+  <title>TOTC | Learn Without Limits</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #5b5ce2;
+      --primary-dark: #4546bd;
+      --navy: #172554;
+      --text: #20243a;
+      --muted: #6b7280;
+      --surface: #f6f7fc;
+      --border: #e8eaf2;
+      --radius: 18px;
+      --shadow: 0 12px 35px rgba(25, 35, 75, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #fff;
+      font-family: "Inter", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { text-decoration: none; }
+
+    .navbar {
+      padding: 17px 0;
+      background: #fff;
+      box-shadow: 0 3px 18px rgba(20, 30, 70, .05);
+    }
+
+    .navbar-brand {
+      color: var(--navy);
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -.7px;
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-right: 8px;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 12px;
+      font-size: 1.05rem;
+    }
+
+    .navbar .nav-link {
+      margin: 0 3px;
+      color: #4b5563;
+      font-size: .91rem;
+      font-weight: 500;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active { color: var(--primary); }
+
+    .profile-image {
+      width: 39px;
+      height: 39px;
+      object-fit: cover;
+      border: 2px solid #ececff;
+      border-radius: 50%;
+    }
+
+    .profile-name {
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .hero {
+      overflow: hidden;
+      padding: 76px 0;
+      background: linear-gradient(115deg, #f1f2ff 0%, #f8f8ff 55%, #fff 100%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 7px 13px;
+      color: var(--primary-dark);
+      background: #e8e9ff;
+      border-radius: 30px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 620px;
+      margin-bottom: 20px;
+      color: var(--navy);
+      font-size: clamp(2.2rem, 4.4vw, 3.65rem);
+      font-weight: 800;
+      letter-spacing: -1.8px;
+      line-height: 1.14;
+    }
+
+    .hero h1 span { color: var(--primary); }
+
+    .hero-copy {
+      max-width: 540px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .btn-primary-custom {
+      display: inline-block;
+      padding: 13px 23px;
+      color: #fff;
+      background: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: 10px;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .btn-primary-custom:hover {
+      color: #fff;
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-image-wrap { position: relative; }
+
+    .hero-image {
+      width: 100%;
+      max-height: 430px;
+      object-fit: cover;
+      border-radius: 26px;
+      box-shadow: 0 20px 50px rgba(40, 45, 100, .16);
+    }
+
+    .section-space { padding: 76px 0; }
+
+    .section-heading {
+      margin-bottom: 8px;
+      color: var(--navy);
+      font-size: clamp(1.55rem, 2.5vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -.6px;
+    }
+
+    .section-subtitle {
+      margin-bottom: 30px;
+      color: var(--muted);
+    }
+
+    .category-card {
+      position: relative;
+      display: flex;
+      min-height: 205px;
+      align-items: flex-end;
+      overflow: hidden;
+      padding: 18px;
+      background-position: center;
+      background-size: cover;
+      border-radius: var(--radius);
+      isolation: isolate;
+      transition: transform .25s ease;
+    }
+
+    .category-card::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 15, 35, .04), rgba(10, 15, 35, .72));
+      content: "";
+    }
+
+    .category-card:hover { transform: translateY(-5px); }
+
+    .category-card span {
+      display: inline-block;
+      padding: 8px 15px;
+      color: #fff;
+      background: rgba(20, 25, 50, .62);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 9px;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+
+    .category-ux { background-image: url("images/pexels-dkomov-34803985.jpg"); }
+    .category-react { background-image: url("images/pexels-digitalbuggu-374560.jpg"); }
+    .category-php { background-image: url("images/pexels-lalorosas-907489.jpg"); }
+    .category-js { background-image: url("images/pexels-meet-patel-236003280-37085303.jpg"); }
+
+    .blog-section { background: var(--surface); }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .text-link {
+      color: var(--primary);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .text-link:hover { color: var(--primary-dark); }
+
+    .blog-card,
+    .course-card {
+      height: 100%;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .blog-card:hover,
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 38px rgba(25, 35, 75, .13);
+    }
+
+    .blog-card > img,
+    .course-card > img {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+    }
+
+    .blog-card-body,
+    .course-card-body { padding: 22px; }
+
+    .blog-card h3 {
+      margin: 14px 0 10px;
+      color: var(--navy);
+      font-size: 1.08rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .blog-card p,
+    .course-card p {
+      color: var(--muted);
+      font-size: .91rem;
+    }
+
+    .author-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .author-row img {
+      width: 37px;
+      height: 37px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .author-row span {
+      color: #4b5563;
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      top: 45%;
+      width: 42px;
+      height: 42px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 1;
+    }
+
+    .carousel-control-prev { left: -18px; }
+    .carousel-control-next { right: -18px; }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon { width: 17px; }
+
+    .carousel-indicators { bottom: -48px; }
+
+    .carousel-indicators [data-bs-target] {
+      width: 8px;
+      height: 8px;
+      background-color: var(--primary);
+      border: 0;
+      border-radius: 50%;
+    }
+
+    .course-category {
+      color: var(--primary);
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 13px 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .course-card h3 {
+      min-height: 52px;
+      margin: 8px 0;
+      color: var(--navy);
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .course-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+    }
+
+    .course-instructor {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #4b5563;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    .course-instructor img {
+      width: 34px;
+      height: 34px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .old-price {
+      display: block;
+      color: #9ca3af;
+      font-size: .78rem;
+      text-decoration: line-through;
+      text-align: right;
+    }
+
+    .new-price {
+      color: var(--primary);
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 58px 0 28px;
+      color: #fff;
+      background: #172554;
+    }
+
+    .footer-brand {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .footer-copy {
+      max-width: 420px;
+      margin-top: 12px;
+      color: #c7cce0;
+      font-size: .9rem;
+    }
+
+    .newsletter-title {
+      margin-bottom: 16px;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .newsletter-form { display: flex; gap: 10px; }
+
+    .newsletter-form input {
+      min-width: 0;
+      padding: 12px 16px;
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 30px;
+    }
+
+    .newsletter-form input::placeholder { color: #c7cce0; }
+
+    .newsletter-form button {
+      padding: 11px 20px;
+      color: #fff;
+      background: var(--primary);
+      border: 0;
+      border-radius: 30px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover { background: var(--primary-dark); }
+
+    .footer-bottom {
+      margin-top: 42px;
+      padding-top: 20px;
+      color: #aeb7d3;
+      border-top: 1px solid rgba(255,255,255,.15);
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    @media (max-width: 991.98px) {
+      .hero { padding: 58px 0; }
+      .hero-image-wrap { margin-top: 35px; }
+      .navbar .navbar-nav { padding-top: 12px; }
+      .profile-area { padding: 12px 0; }
+      .carousel-control-prev { left: -10px; }
+      .carousel-control-next { right: -10px; }
+    }
+
+    @media (max-width: 575.98px) {
+      .section-space { padding: 55px 0; }
+      .hero { padding: 48px 0; }
+      .hero h1 { letter-spacing: -1px; }
+      .section-header { align-items: flex-start; }
+      .category-card { min-height: 175px; }
+      .blog-card > img,
+      .course-card > img { height: 190px; }
+      .carousel-control-prev,
+      .carousel-control-next { display: none; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form button { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-xl sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="p.html">
+        <span class="brand-mark">T</span>TOTC
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#mainNavigation" aria-controls="mainNavigation"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavigation">
+        <ul class="navbar-nav ms-auto align-items-xl-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="coursepage.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="coursedetail.html">Course Details</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blogdetails.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="meeting.html">Meeting</a></li>
+          <li class="nav-item"><a class="nav-link" href="searchpage.html">Search</a></li>
+          <li class="nav-item"><a class="nav-link" href="literature course.html">Literature</a></li>
+          <li class="nav-item"><a class="nav-link" href="membership.html">Membership</a></li>
+          <li class="nav-item"><a class="nav-link" href="checkoutpage.html">Checkout</a></li>
+        </ul>
+
+        <div class="profile-area d-flex align-items-center gap-2 ms-xl-3">
+          <img class="profile-image" src="images/pexels-garuda-929115-29214093.jpg" alt="User profile">
+          <span class="profile-name">Lina</span>
+          <select class="form-select form-select-sm border-0 w-auto" aria-label="Profile menu">
+            <option selected>Profile</option>
+            <option value="settings">Settings</option>
+            <option value="logout">Log out</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <span class="eyebrow">Your Journey to Knowledge Starts Here</span>
+
+            <p class="mb-2 text-secondary fw-semibold">
+              Featured Learning <span class="text-primary">Resources</span>
+            </p>
+
+            <h1>
+              Unlock Your Potential Through
+              <span>Smart Online Learning</span>
+            </h1>
+
+            <p class="hero-copy">
+              Explore expert-led courses, gain practical experience, and develop
+              the skills you need to succeed in today's digital world.
+            </p>
+
+            <a href="coursepage.html" class="btn-primary-custom">Start Learning Now</a>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="hero-image-wrap">
+              <img class="hero-image" src="images/online meeting 2.jpg"
+                alt="Students participating in an online learning session">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="section-space">
+      <div class="container">
+        <h2 class="section-heading">Explore Learning Categories</h2>
+        <p class="section-subtitle">
+          Discover educational resources across popular technology fields.
+        </p>
+
+        <div class="row g-4">
+          <div class="col-6 col-lg-3">
+            <a href="#" class="category-card category-ux">
+              <span>UX / UI Design</span>
+            </a>
+          </div>
+
+          <div class="col-6 col-lg-3">
+            <a href="#" class="category-card category-react">
+              <span>React Development</span>
+            </a>
+          </div>
+
+          <div class="col-6 col-lg-3">
+            <a href="#" class="category-card category-php">
+              <span>PHP Programming</span>
+            </a>
+          </div>
+
+          <div class="col-6 col-lg-3">
+            <a href="#" class="category-card category-js">
+              <span>JavaScript</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Carousel -->
+    <section class="section-space blog-section">
+      <div class="container">
+
+        <div class="section-header">
+          <div>
+            <h2 class="section-heading mb-1">Latest Learning Articles</h2>
+            <p class="text-secondary mb-0">
+              Helpful ideas and knowledge to support your learning journey.
+            </p>
+          </div>
+
+          <a href="blogdetails.html" class="text-link">See all articles &rarr;</a>
+        </div>
+
+        <div id="blogCarousel" class="carousel slide" data-bs-ride="carousel">
+
+          <div class="carousel-inner">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+              <div class="row g-4">
+
+                <div class="col-md-6">
+                  <article class="blog-card">
+                    <img src="images/pexels-pavel-danilyuk-8761643.jpg"
+                      alt="Students learning with modern technology">
+
+                    <div class="blog-card-body">
+                      <span class="course-category">Artificial Intelligence</span>
+
+                      <h3>
+                        How Artificial Intelligence Is Transforming Online Education
+                      </h3>
+
+                      <p>
+                        Discover how AI-powered tools create personalized
+                        learning experiences and help students understand
+                        complex subjects more effectively.
+                      </p>
+
+                      <div class="author-row">
+                        <img src="images/pexels-fernanda-leticia-536417725-33757713.jpg" alt="Sarah">
+                        <span>By Sarah</span>
+                        <a class="text-link ms-auto" href="blogdetails.html">Read more</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col-md-6">
+                  <article class="blog-card">
+                    <img src="images/pexels-shvetsa-4226140.jpg"
+                      alt="Student attending a virtual class">
+
+                    <div class="blog-card-body">
+                      <span class="course-category">Study Techniques</span>
+
+                      <h3>
+                        7 Effective Ways to Stay Focused During Online Classes
+                      </h3>
+
+                      <p>
+                        Explore practical study techniques, time management
+                        strategies, and simple habits that improve concentration
+                        during virtual lessons.
+                      </p>
+
+                      <div class="author-row">
+                        <img src="images/pexels-ashik-40729428.jpg" alt="David">
+                        <span>By David</span>
+                        <a class="text-link ms-auto" href="blogdetails.html">Read more</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+              <div class="row g-4">
+
+                <div class="col-md-6">
+                  <article class="blog-card">
+                    <img src="images/online meeting 2.jpg"
+                      alt="Professional online learning discussion">
+
+                    <div class="blog-card-body">
+                      <span class="course-category">Career Development</span>
+
+                      <h3>
+                        From Classroom to Career: Building Your Professional Future
+                      </h3>
+
+                      <p>
+                        Learn how practical training, internships, and
+                        continuous learning can prepare you for professional
+                        opportunities.
+                      </p>
+
+                      <div class="author-row">
+                        <img src="images/pexels-garuda-929115-29214093.jpg" alt="Emily">
+                        <span>By Emily</span>
+                        <a class="text-link ms-auto" href="blogdetails.html">Read more</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="col-md-6">
+                  <article class="blog-card">
+                    <img src="images/online meeting 3.jpg"
+                      alt="Students collaborating in a digital classroom">
+
+                    <div class="blog-card-body">
+                      <span class="course-category">Programming</span>
+
+                      <h3>
+                        Why Every Student Should Learn Basic Coding
+                      </h3>
+
+                      <p>
+                        Understand how programming develops logical thinking,
+                        creativity, and problem-solving skills that are useful
+                        in many careers.
+                      </p>
+
+                      <div class="author-row">
+                        <img src="images/pexels-nkhajotia-1516680.jpg" alt="Michael">
+                        <span>By Michael</span>
+                        <a class="text-link ms-auto" href="blogdetails.html">Read more</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <button class="carousel-control-prev" type="button"
+            data-bs-target="#blogCarousel" data-bs-slide="prev"
+            aria-label="Previous articles">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+
+          <button class="carousel-control-next" type="button"
+            data-bs-target="#blogCarousel" data-bs-slide="next"
+            aria-label="Next articles">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-indicators position-relative mt-4 mb-0">
+            <button type="button" data-bs-target="#blogCarousel"
+              data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+
+            <button type="button" data-bs-target="#blogCarousel"
+              data-bs-slide-to="1" aria-label="Slide 2"></button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Courses -->
+    <section class="section-space">
+      <div class="container">
+
+        <div class="section-header">
+          <div>
+            <h2 class="section-heading mb-1">Explore Our Featured Courses</h2>
+            <p class="text-secondary mb-0">
+              Discover carefully designed courses to develop your knowledge
+              and professional skills.
+            </p>
+          </div>
+
+          <a href="coursepage.html" class="text-link">See all courses &rarr;</a>
+        </div>
+
+        <div class="row g-4">
+
+          <!-- Course 1 -->
+          <div class="col-sm-6 col-xl-3">
+            <article class="course-card">
+              <img src="images/uiux.png" alt="Student learning web design">
+
+              <div class="course-card-body">
+                <span class="course-category">Web Design</span>
+
+                <div class="course-meta">
+                  <span>◷ 2 Months</span>
+                  <span>Beginner</span>
+                </div>
+
+                <h3>Complete UI/UX Design Fundamentals</h3>
+
+                <p>
+                  Learn to create attractive website layouts, design
+                  user-friendly interfaces, and improve user experiences.
+                </p>
+
+                <div class="course-footer">
+                  <div class="course-instructor">
+                    <img src="images/pexels-fernanda-leticia-536417725-33757713.jpg" alt="Sarah">
+                    <span>Sarah</span>
+                  </div>
+
+                  <div>
+                    <span class="old-price">$90</span>
+                    <span class="new-price">$65</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <article class="course-card">
+              <img src="images/pexels-goumbik-574077.jpg" alt="Student learning programming">
+
+              <div class="course-card-body">
+                <span class="course-category">Programming</span>
+
+                <div class="course-meta">
+                  <span>◷ 4 Months</span>
+                  <span>Intermediate</span>
+                </div>
+
+                <h3>Full Stack JavaScript Development</h3>
+
+                <p>
+                  Master front-end and back-end development by building
+                  interactive applications with JavaScript.
+                </p>
+
+                <div class="course-footer">
+                  <div class="course-instructor">
+                    <img src="images/pexels-ashik-40729428.jpg" alt="David">
+                    <span>David</span>
+                  </div>
+
+                  <div>
+                    <span class="old-price">$150</span>
+                    <span class="new-price">$120</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Course 3 -->
+          <div class="col-sm-6 col-xl-3">
+            <article class="course-card">
+              <img src="images/pexels-divinetechygirl-1181671.jpg" alt="Students learning data science">
+
+              <div class="course-card-body">
+                <span class="course-category">Data Science</span>
+
+                <div class="course-meta">
+                  <span>◷ 3 Months</span>
+                  <span>Beginner</span>
+                </div>
+
+                <h3>Introduction to Python and Data Analytics</h3>
+
+                <p>
+                  Explore Python fundamentals, understand data analysis,
+                  and learn how to work with useful datasets.
+                </p>
+
+                <div class="course-footer">
+                  <div class="course-instructor">
+                    <img src="images/pexels-garuda-929115-29214093.jpg" alt="Emily">
+                    <span>Emily</span>
+                  </div>
+
+                  <div>
+                    <span class="old-price">$120</span>
+                    <span class="new-price">$95</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Course 4 -->
+          <div class="col-sm-6 col-xl-3">
+            <article class="course-card">
+              <img src="images/online meeting.jpg" alt="Students learning digital marketing">
+
+              <div class="course-card-body">
+                <span class="course-category">Business</span>
+
+                <div class="course-meta">
+                  <span>◷ 6 Weeks</span>
+                  <span>Intermediate</span>
+                </div>
+
+                <h3>Digital Marketing and Brand Strategy</h3>
+
+                <p>
+                  Understand social media marketing, content planning,
+                  brand development, and online promotion techniques.
+                </p>
+
+                <div class="course-footer">
+                  <div class="course-instructor">
+                    <img src="images/pexels-nkhajotia-1516680.jpg" alt="Michael">
+                    <span>Michael</span>
+                  </div>
+
+                  <div>
+                    <span class="old-price">$100</span>
+                    <span class="new-price">$75</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row align-items-center gy-4">
+
+        <div class="col-lg-5">
+          <a class="footer-brand" href="p.html">TOTC</a>
+
+          <p class="footer-copy">
+            TOTC is your destination for accessible online education.
+            Learn from experienced instructors, explore new subjects,
+            and build the confidence to achieve your academic and career goals.
+          </p>
+        </div>
+
+        <div class="col-lg-6 offset-lg-1">
+          <h2 class="newsletter-title">
+            Subscribe to get our newsletter
+          </h2>
+
+          <form class="newsletter-form" action="#" method="post">
+            <label class="visually-hidden" for="newsletterEmail">
+              Your email address
+            </label>
+
+            <input class="form-control" id="newsletterEmail"
+              name="email" type="email"
+              placeholder="Enter your email address" required>
+
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 TOTC. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

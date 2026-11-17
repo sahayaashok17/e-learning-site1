@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore literature courses and learning resources on TOTC.">
+  <title>Literature Course | TOTC</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #172554;
+      --navy-deep: #102044;
+      --purple: #6c63ff;
+      --purple-dark: #554be8;
+      --cyan: #22c7d6;
+      --ink: #202842;
+      --muted: #778097;
+      --surface: #ffffff;
+      --page: #f7f8fc;
+      --line: #e9ecf4;
+      --shadow: 0 12px 35px rgba(28, 43, 86, .08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: "Inter", sans-serif;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; }
+    .navbar {
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    .navbar-brand {
+      color: var(--navy);
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -.06em;
+    }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-right: 8px;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--purple), #8b83ff);
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+    .navbar .nav-link {
+      color: #586178;
+      font-size: .88rem;
+      font-weight: 600;
+      padding: 9px 11px !important;
+      transition: color .2s ease;
+    }
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active { color: var(--purple-dark); }
+    .profile-image {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #eceaff;
+    }
+    .profile-name { color: var(--ink); font-size: .9rem; font-weight: 600; }
+    .hero-wrap { padding: 34px 0 0; }
+    .enroll {
+      min-height: 275px;
+      position: relative;
+      display: flex;
+      align-items: end;
+      padding: 28px 42px;
+      overflow: hidden;
+      border-radius: 24px;
+      background:
+        linear-gradient(90deg, rgba(16,32,68,.58), rgba(16,32,68,.05)),
+        url("images/online meeting 3.jpg") center 48% / cover no-repeat;
+    }
+    .hero-avatar {
+      width: 154px;
+      height: 154px;
+      object-fit: cover;
+      border: 6px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 10px 28px rgba(0,0,0,.2);
+    }
+    .hero-copy { color: #fff; padding: 0 0 14px 22px; }
+    .hero-copy h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; margin: 0 0 5px; }
+    .hero-copy p { margin: 0; color: rgba(255,255,255,.88); }
+    .section-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 22px 0 28px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .section-tabs .btn {
+      flex: 0 0 auto;
+      border: 1px solid #e4e6f0;
+      border-radius: 999px;
+      padding: 9px 20px;
+      color: #59627a;
+      background: #fff;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .section-tabs .btn:hover,
+    .section-tabs .btn.active {
+      border-color: var(--purple);
+      color: #fff;
+      background: var(--purple);
+    }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .section-heading p { color: var(--muted); margin: 5px 0 0; font-size: .92rem; }
+    .course-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .course-card {
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--surface);
+      box-shadow: 0 5px 18px rgba(28,43,86,.035);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .course-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .course-image {
+      width: 100%;
+      height: 190px;
+      display: block;
+      object-fit: cover;
+      background: #eceef5;
+    }
+    .course-content { padding: 17px 18px 18px; }
+    .course-label {
+      display: inline-block;
+      margin-bottom: 9px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: var(--purple-dark);
+      background: #f0efff;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    .course-title {
+      min-height: 48px;
+      margin: 0;
+      color: var(--navy);
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .course-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 13px;
+      border-top: 1px solid var(--line);
+    }
+    .course-price { color: var(--purple-dark); font-size: 1.1rem; font-weight: 800; }
+    .course-link { color: var(--muted); font-size: .82rem; font-weight: 600; }
+    .course-link:hover { color: var(--purple-dark); }
+    .courses-section { padding: 4px 0 70px; }
+    footer {
+      margin-top: 30px;
+      padding: 58px 0 28px;
+      color: #fff;
+      background: var(--navy-deep);
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+    .footer-brand h2 { margin: 0; font-size: 2rem; font-weight: 800; }
+    .footer-brand span { padding-left: 18px; border-left: 2px solid rgba(255,255,255,.65); color: #dce3f5; font-size: .95rem; line-height: 1.4; }
+    .newsletter-title { margin-bottom: 18px; color: #d9deeb; text-align: center; font-size: 1rem; font-weight: 600; }
+    .newsletter-form { display: flex; gap: 10px; max-width: 510px; margin: 0 auto; }
+    .newsletter-form .form-control {
+      min-height: 48px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(255,255,255,.08);
+    }
+    .newsletter-form .form-control::placeholder { color: #c4ccdc; }
+    .newsletter-form .btn {
+      min-width: 125px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--purple);
+      font-weight: 700;
+    }
+    .newsletter-form .btn:hover { background: var(--purple-dark); }
+    .footer-bottom { margin-top: 42px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.13); color: #aeb9d0; text-align: center; font-size: .8rem; }
+
+    @media (max-width: 991.98px) {
+      .navbar .navbar-nav { padding-top: 12px; }
+      .profile-area { padding: 12px 0 4px; }
+      .course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 575.98px) {
+      .hero-wrap { padding-top: 20px; }
+      .enroll { min-height: 235px; padding: 20px; align-items: end; }
+      .hero-avatar { width: 112px; height: 112px; }
+      .hero-copy { padding: 0 0 9px 14px; }
+      .hero-copy p { font-size: .8rem; }
+      .section-tabs { padding: 18px 0 24px; }
+      .course-grid { grid-template-columns: 1fr; gap: 16px; }
+      .course-image { height: 210px; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form .btn { min-height: 46px; }
+      footer { padding-top: 44px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-xl sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="p.html" aria-label="TOTC home">
+        <span class="brand-mark"><i class="bi bi-mortarboard-fill"></i></span>TOTC
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation"
+        aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavigation">
+        <ul class="navbar-nav ms-auto align-items-xl-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="coursepage.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="coursedetail.html">Course Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogdetails.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="meeting.html">Meeting</a></li>
+          <li class="nav-item"><a class="nav-link" href="searchpage.html">Search Page</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="literature course.html">Literature</a></li>
+          <li class="nav-item"><a class="nav-link" href="membership.html">Membership</a></li>
+          <li class="nav-item"><a class="nav-link" href="checkoutpage.html">Checkout</a></li>
+        </ul>
+        <div class="profile-area d-flex align-items-center gap-2 ms-xl-3">
+          <img class="profile-image" src="images/pexels-garuda-929115-29214093.jpg" alt="Lina's profile">
+          <span class="profile-name">Lina</span>
+          <i class="bi bi-chevron-down small text-secondary" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container hero-wrap">
+      <section class="enroll" aria-label="Literature course banner">
+        <img class="hero-avatar" src="images/pexels-syd-trgt-335495720-36181540.jpg" alt="Literature course profile">
+        <div class="hero-copy">
+          <h1>Learn, Read &amp; Explore</h1>
+          <p>Discover new ideas through literature and lifelong learning.</p>
+        </div>
+      </section>
+
+      <nav class="section-tabs" aria-label="Course sections">
+        <a class="btn" href="#about">About</a>
+        <a class="btn active" href="#courses">Course</a>
+        <a class="btn" href="#notes">Notes</a>
+        <a class="btn" href="#projects">Project</a>
+        <a class="btn" href="#podcasts">Podcast</a>
+        <a class="btn" href="#books">Book</a>
+        <a class="btn" href="#reviews">Review</a>
+      </nav>
+    </div>
+
+    <section class="courses-section" id="courses">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>Literature courses</h2>
+            <p>Explore our featured learning resources.</p>
+          </div>
+          <a class="course-link" href="coursepage.html">View all courses <i class="bi bi-arrow-right"></i></a>
+        </div>
+
+        <div class="course-grid">
+          <article class="course-card">
+            <img class="course-image" src="images/book2.jpg" alt="Introduction to classic literature resource">
+            <div class="course-content">
+              <span class="course-label">Literature Basics</span>
+              <h3 class="course-title">Introduction to Classic Literature</h3>
+              <div class="course-meta"><span class="course-price">$24</span><a class="course-link" href="checkoutpage.html">Explore <i class="bi bi-arrow-up-right"></i></a></div>
+            </div>
+          </article>
+          <article class="course-card">
+            <img class="course-image" src="images/book.jpg" alt="Poetry studies learning resource">
+            <div class="course-content">
+              <span class="course-label">Poetry Studies</span>
+              <h3 class="course-title">Poetry: Reading Between the Lines</h3>
+              <div class="course-meta"><span class="course-price">$24</span><a class="course-link" href="checkoutpage.html">Explore <i class="bi bi-arrow-up-right"></i></a></div>
+            </div>
+          </article>
+          <article class="course-card">
+            <img class="course-image" src="images/pexels-fernanda-leticia-536417725-33757713.jpg" alt="Student carrying books for literature study">
+            <div class="course-content">
+              <span class="course-label">Drama & Theatre</span>
+              <h3 class="course-title">Understanding Shakespeare and His Plays</h3>
+              <div class="course-meta"><span class="course-price">$24</span><a class="course-link" href="checkoutpage.html">Explore <i class="bi bi-arrow-up-right"></i></a></div>
+            </div>
+          </article>
+          <article class="course-card">
+            <img class="course-image" src="images/pexels-defrinomaasy-40101556.jpg" alt="Decorative book in a library collection">
+            <div class="course-content">
+              <span class="course-label">World Literature</span>
+              <h3 class="course-title">World Literature and Cultural Perspectives</h3>
+              <div class="course-meta"><span class="course-price">$24</span><a class="course-link" href="checkoutpage.html">Explore <i class="bi bi-arrow-up-right"></i></a></div>
+            </div>
+          </article>
+          <article class="course-card">
+            <img class="course-image" src="images/kid.jpg" alt="Literary analysis study resource">
+            <div class="course-content">
+              <span class="course-label">Literary Analysis</span>
+              <h3 class="course-title">Literary Criticism and Textual Analysis</h3>
+              <div class="course-meta"><span class="course-price">$24</span><a class="course-link" href="checkoutpage.html">Explore <i class="bi bi-arrow-up-right"></i></a></div>
+            </div>
+          </article>
+          <article class="course-card">
+            <img class="course-image" src="images/pexels-goumbik-574077.jpg" alt="Reader holding a programming book">
+            <div class="course-content">
+              <span class="course-label">Creative Writing</span>
+              <h3 class="course-title">Creative Writing: Stories and Expression</h3>
+              <div class="course-meta"><span class="course-price">$24</span><a class="course-link" href="checkoutpage.html">Explore <i class="bi bi-arrow-up-right"></i></a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <h2>TOTC</h2>
+        <span>Virtual Class<br>For Zoom</span>
+      </div>
+      <p class="newsletter-title">Subscribe to get our Newsletter</p>
+      <form class="newsletter-form" action="#" method="get">
+        <label class="visually-hidden" for="newsletterEmail">Your email address</label>
+        <input class="form-control" id="newsletterEmail" type="email" placeholder="Your email address" required>
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+      <div class="footer-bottom">© 2026 TOTC. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,530 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore flexible and affordable TOTC learning plans, student stories, and teaching opportunities.">
+  <title>Membership & Pricing | TOTC</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #172554;
+      --navy-deep: #102044;
+      --purple: #6c63ff;
+      --purple-dark: #554be8;
+      --cyan: #22c7d6;
+      --ink: #202842;
+      --muted: #778097;
+      --page: #f7f8fc;
+      --line: #e9ecf4;
+      --shadow: 0 12px 35px rgba(28, 43, 86, .08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--page);
+      font-family: "Inter", sans-serif;
+      line-height: 1.65;
+    }
+    a { text-decoration: none; }
+    .navbar {
+      padding: 14px 0;
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid var(--line);
+    }
+    .navbar-brand {
+      color: var(--navy);
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -.06em;
+    }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-right: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--purple), #8b83ff);
+      border-radius: 12px;
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+    .navbar .nav-link {
+      padding: 9px 11px !important;
+      color: #586178;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active { color: var(--purple-dark); }
+    .page-intro { padding: 62px 0 32px; text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 13px;
+      color: var(--purple-dark);
+      background: #efeeff;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .page-intro h1 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -.05em;
+    }
+    .page-intro p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+    .pricing-section { padding: 10px 0 76px; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      align-items: stretch;
+    }
+    .price-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 26px 27px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 6px 22px rgba(28,43,86,.045);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .price-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .price-card.featured {
+      border: 2px solid var(--purple);
+      box-shadow: 0 14px 38px rgba(108,99,255,.13);
+    }
+    .popular-tag {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 5px 14px;
+      color: #fff;
+      background: var(--purple);
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .plan-name {
+      margin-bottom: 8px;
+      color: var(--navy);
+      font-size: 1.12rem;
+      font-weight: 700;
+    }
+    .price-line { display: flex; align-items: baseline; gap: 8px; margin-bottom: 22px; }
+    .price {
+      color: var(--navy);
+      font-size: 2.65rem;
+      font-weight: 800;
+      letter-spacing: -.06em;
+      line-height: 1.2;
+    }
+    .period { color: var(--muted); font-size: .78rem; font-weight: 700; letter-spacing: .08em; }
+    .plan-description { min-height: 48px; margin-bottom: 22px; color: var(--muted); font-size: .88rem; }
+    .feature-list { display: grid; gap: 14px; margin: 0 0 28px; padding: 0; list-style: none; }
+    .feature-list li { display: flex; align-items: flex-start; gap: 10px; color: #515b73; font-size: .88rem; }
+    .feature-list i { margin-top: 2px; color: #19b99a; font-size: 1rem; }
+    .plan-button {
+      display: block;
+      width: 100%;
+      margin-top: auto;
+      padding: 12px 16px;
+      color: #fff;
+      background: var(--purple);
+      border: 1px solid var(--purple);
+      border-radius: 11px;
+      text-align: center;
+      font-size: .9rem;
+      font-weight: 700;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .plan-button:hover { color: #fff; background: var(--purple-dark); border-color: var(--purple-dark); }
+    .price-card:not(.featured) .plan-button {
+      color: var(--purple-dark);
+      background: #f1f0ff;
+      border-color: #e7e5ff;
+    }
+    .price-card:not(.featured) .plan-button:hover { color: #fff; background: var(--purple); }
+    .lessons {
+      margin: 10px auto 78px;
+      padding: 68px 28px;
+      color: #fff;
+      background:
+        linear-gradient(120deg, rgba(16,32,68,.96), rgba(38,51,105,.88)),
+        url("images/pexels-goumbik-574077.jpg") center / cover no-repeat;
+      border-radius: 24px;
+      text-align: center;
+    }
+    .lessons h2 { max-width: 700px; margin: 0 auto 14px; font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 800; }
+    .lessons p { max-width: 680px; margin: 0 auto 25px; color: #dbe2f3; }
+    .primary-button {
+      display: inline-block;
+      padding: 12px 23px;
+      color: #fff;
+      background: var(--purple);
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+    .primary-button:hover { color: #fff; background: var(--purple-dark); }
+    .faq-section { padding: 0 0 78px; }
+    .section-heading { margin-bottom: 28px; text-align: center; }
+    .section-heading h2 { margin: 0 0 8px; color: var(--navy); font-size: clamp(1.55rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.04em; }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .faq-list { max-width: 900px; margin: 0 auto; display: grid; gap: 12px; }
+    .faq-list details {
+      padding: 0 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      box-shadow: 0 4px 14px rgba(28,43,86,.035);
+    }
+    .faq-list summary {
+      position: relative;
+      padding: 18px 34px 18px 0;
+      color: var(--navy);
+      cursor: pointer;
+      font-size: .94rem;
+      font-weight: 700;
+      list-style: none;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      color: var(--purple);
+      content: "+";
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-list details p { margin: 0; padding: 0 0 18px; color: var(--muted); font-size: .88rem; }
+    .testimonials-section { padding: 72px 0; background: #f0f1ff; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+    .testimonial-card {
+      height: 100%;
+      padding: 22px 19px;
+      background: #fff;
+      border: 1px solid #e6e7f5;
+      border-radius: 17px;
+      box-shadow: 0 7px 22px rgba(28,43,86,.045);
+      text-align: center;
+    }
+    .testimonial-card img {
+      width: 82px;
+      height: 82px;
+      margin-bottom: 14px;
+      object-fit: cover;
+      border: 4px solid #efeeff;
+      border-radius: 50%;
+    }
+    .testimonial-card h3 { margin: 0 0 9px; color: var(--navy); font-size: 1rem; font-weight: 700; }
+    .testimonial-card p { margin: 0; color: var(--muted); font-size: .83rem; }
+    .app-section { padding: 72px 0; }
+    .app-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 38px 42px;
+      color: #fff;
+      background: var(--navy-deep);
+      border-radius: 22px;
+    }
+    .app-panel h2 { margin: 0 0 6px; font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; }
+    .app-panel p { margin: 0; color: #cbd5e8; }
+    .app-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .app-actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 17px;
+      color: #fff;
+      background: var(--purple);
+      border-radius: 10px;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .app-actions a:hover { background: var(--purple-dark); }
+    .opportunities-section { padding: 0 0 78px; }
+    .opportunity-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    .opportunity-card {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 7px 22px rgba(28,43,86,.045);
+    }
+    .opportunity-card img { display: block; width: 100%; height: 230px; object-fit: cover; }
+    .opportunity-content { padding: 22px; }
+    .opportunity-content h3 { margin: 0 0 8px; color: var(--navy); font-size: 1.15rem; font-weight: 800; }
+    .opportunity-content p { margin: 0 0 18px; color: var(--muted); font-size: .88rem; }
+    .opportunity-content .primary-button { padding: 10px 17px; }
+    footer { padding: 56px 0 25px; color: #fff; background: var(--navy-deep); }
+    .footer-brand { display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 32px; }
+    .footer-brand h2 { margin: 0; font-size: 2rem; font-weight: 800; }
+    .footer-brand span { padding-left: 18px; border-left: 2px solid rgba(255,255,255,.65); color: #dce3f5; font-size: .95rem; line-height: 1.4; }
+    .newsletter-title { margin-bottom: 17px; color: #d9deeb; text-align: center; font-size: 1rem; font-weight: 600; }
+    .newsletter-form { display: flex; gap: 10px; max-width: 510px; margin: 0 auto; }
+    .newsletter-form .form-control { min-height: 48px; padding: 10px 18px; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.35); border-radius: 999px; }
+    .newsletter-form .form-control::placeholder { color: #c4ccdc; }
+    .newsletter-form .btn { min-width: 125px; color: #fff; background: var(--purple); border: 0; border-radius: 999px; font-weight: 700; }
+    .newsletter-form .btn:hover { background: var(--purple-dark); }
+    .footer-bottom { margin-top: 40px; padding-top: 19px; border-top: 1px solid rgba(255,255,255,.13); color: #aeb9d0; text-align: center; font-size: .8rem; }
+
+    @media (max-width: 991.98px) {
+      .navbar .navbar-nav { padding-top: 12px; }
+      .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .testimonial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 575.98px) {
+      .page-intro { padding: 44px 0 25px; }
+      .pricing-grid, .testimonial-grid, .opportunity-grid { grid-template-columns: 1fr; }
+      .price-card { padding: 27px 23px; }
+      .lessons { margin-bottom: 58px; padding: 48px 22px; }
+      .testimonials-section { padding: 55px 0; }
+      .app-panel { align-items: flex-start; flex-direction: column; padding: 30px 24px; }
+      .opportunity-card img { height: 205px; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form .btn { min-height: 46px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-xl sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="p.html" aria-label="TOTC home">
+        <span class="brand-mark"><i class="bi bi-mortarboard-fill"></i></span>TOTC
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation"
+        aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavigation">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="coursepage.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="coursedetail.html">Course Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogdetails.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="meeting.html">Meeting</a></li>
+          <li class="nav-item"><a class="nav-link" href="searchpage.html">Search Page</a></li>
+          <li class="nav-item"><a class="nav-link" href="literature course.html">Literature Course</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="membership.html">Membership</a></li>
+          <li class="nav-item"><a class="nav-link" href="checkoutpage.html">Checkout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-intro">
+      <div class="container">
+        <span class="eyebrow">Simple plans, better learning</span>
+        <h1>Affordable pricing</h1>
+        <p>Choose the learning plan that works for you. Start for free or unlock more ways to grow with TOTC.</p>
+      </div>
+    </header>
+
+    <section class="pricing-section" aria-label="Membership pricing plans">
+      <div class="container">
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h2 class="plan-name">Free Plan</h2>
+            <div class="price-line"><span class="price">Free</span><span class="period">/ FOREVER</span></div>
+            <p class="plan-description">A simple way to get started with your learning journey.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Access to selected beginner courses</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Basic video learning materials</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Join the student learning community</span></li>
+            </ul>
+            <a class="plan-button" href="checkoutpage.html">Try for free</a>
+          </article>
+
+          <article class="price-card featured">
+            <span class="popular-tag">Most popular</span>
+            <h2 class="plan-name">Regular License</h2>
+            <div class="price-line"><span class="price">$24</span><span class="period">/ MONTH</span></div>
+            <p class="plan-description">More features and resources to support consistent progress.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Unlimited access to regular courses</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Downloadable study materials</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Practical assignments and quizzes</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Personal learning progress tracking</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Course completion certificates</span></li>
+            </ul>
+            <a class="plan-button" href="checkoutpage.html">Choose regular</a>
+          </article>
+
+          <article class="price-card">
+            <h2 class="plan-name">Extended License</h2>
+            <div class="price-line"><span class="price">$12</span><span class="period">/ EDITOR</span></div>
+            <p class="plan-description">A flexible option with useful design and learning resources.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Specialized subject learning modules</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Interactive learning activities</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Additional practice exercises</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Advanced course resources</span></li>
+            </ul>
+            <a class="plan-button" href="checkoutpage.html">Choose extended</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="lessons">
+        <h2>Learn new skills through interactive online coaching.</h2>
+        <p>Connect with experienced instructors, participate in engaging virtual classes, and develop practical knowledge from the comfort of your home.</p>
+        <a class="primary-button" href="coursepage.html">Start learning now <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Frequently asked questions</h2>
+          <p>Find answers to common questions about online coaching and learning.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>What is included in the free membership plan?</summary>
+            <p>The free plan provides access to selected introductory courses, basic video lessons, and the opportunity to participate in the TOTC learning community.</p>
+          </details>
+          <details>
+            <summary>How do I upgrade my current membership?</summary>
+            <p>Visit the membership pricing section, select the plan that suits your learning needs, and continue to the checkout page to complete the upgrade process.</p>
+          </details>
+          <details>
+            <summary>Will I receive a certificate after completing a course?</summary>
+            <p>Eligible courses provide a certificate after you successfully complete the required lessons, assignments, and assessments.</p>
+          </details>
+          <details>
+            <summary>How can I get started with online learning?</summary>
+            <p>Choose a suitable course or membership plan, then follow the enrollment steps on the course or checkout page.</p>
+          </details>
+          <details>
+            <summary>Can I learn at my own pace?</summary>
+            <p>Yes. You can explore course materials according to your schedule and revisit available lessons whenever you need additional practice.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>What our students have to say</h2>
+          <p>Stories and feedback from our learning community.</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <img src="images/pexels-olly-3940492.jpg" alt="Student portrait">
+            <h3>Arjun Kumar</h3>
+            <p>The programming lessons helped me understand complex topics through simple explanations and practical coding exercises.</p>
+          </article>
+          <article class="testimonial-card">
+            <img src="images/pexels-olly-3940492.jpg" alt="Student portrait">
+            <h3>Priya Sharma</h3>
+            <p>I improved my communication skills by attending interactive classes and completing the activities provided by my instructor.</p>
+          </article>
+          <article class="testimonial-card">
+            <img src="images/pexels-olly-3940492.jpg" alt="Student portrait">
+            <h3>Rahul Mehta</h3>
+            <p>The flexible course schedule allowed me to balance my college studies while learning useful digital marketing techniques.</p>
+          </article>
+          <article class="testimonial-card">
+            <img src="images/pexels-olly-3940492.jpg" alt="Student portrait">
+            <h3>Ananya Das</h3>
+            <p>The study resources and regular assessments helped me build confidence and improve my knowledge of graphic design.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-section">
+      <div class="container">
+        <div class="app-panel">
+          <div>
+            <h2>APP is available for free</h2>
+            <p>Continue learning wherever you go.</p>
+          </div>
+          <div class="app-actions">
+            <a href="#"><i class="bi bi-android2"></i> Android App</a>
+            <a href="#"><i class="bi bi-apple"></i> iOS App</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="opportunities-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Grow with the TOTC community</h2>
+          <p>Share your knowledge or help create meaningful learning experiences.</p>
+        </div>
+        <div class="opportunity-grid">
+          <article class="opportunity-card">
+            <img src="images/online meeting 2.jpg" alt="Online class with a teacher">
+            <div class="opportunity-content">
+              <h3>Become a Teacher</h3>
+              <p>Inspire learners by sharing your subject expertise, conducting engaging online lessons, and guiding students toward their educational goals.</p>
+              <a class="primary-button" href="mailto:hello@totc.example">Apply as a teacher</a>
+            </div>
+          </article>
+          <article class="opportunity-card">
+            <img src="images/online meeting.jpg" alt="Online course collaboration">
+            <div class="opportunity-content">
+              <h3>Become a Course Creator</h3>
+              <p>Turn your knowledge into valuable digital lessons by developing structured courses, creating practical activities, and sharing useful resources with learners.</p>
+              <a class="primary-button" href="mailto:hello@totc.example">Apply as a course creator</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <h2>TOTC</h2>
+        <span>Virtual Class<br>For Zoom</span>
+      </div>
+      <p class="newsletter-title">Subscribe to get our Newsletter</p>
+      <form class="newsletter-form" action="#" method="get">
+        <label class="visually-hidden" for="newsletterEmail">Your email address</label>
+        <input class="form-control" id="newsletterEmail" type="email" placeholder="Your email address" required>
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+      <div class="footer-bottom">© 2026 TOTC. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
